@@ -1,6 +1,6 @@
 import { Dialog } from "@reach/dialog";
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form, Message, Grid } from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 
 import { useForm } from "../hooks/useForm";
 import { GET_ENDPOINT, POST_ENDPOINT } from "../utils/constants";
