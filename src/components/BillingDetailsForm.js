@@ -1,11 +1,12 @@
 import { Dialog } from "@reach/dialog";
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form, Message } from "semantic-ui-react";
+import { Button, Container, Form, Message, Grid } from "semantic-ui-react";
 
 import { useForm } from "../hooks/useForm";
 import { GET_ENDPOINT, POST_ENDPOINT } from "../utils/constants";
 import { isEUcountry } from "../utils/index";
 import { validate } from "../utils/validations";
+import "../styles.css";
 
 export function BillingDetailsForm() {
   const [showDialog, setShowDialog] = useState(false);
@@ -26,11 +27,12 @@ export function BillingDetailsForm() {
         body: JSON.stringify(values)
       });
       await req.json();
-      alert(`successfully submitted: ${JSON.stringify(values, null, 2)}`);
+      alert(
+        `successfully submitted with data: ${JSON.stringify(values, null, 2)}`
+      );
       setFormStatus({ status: "success" });
       setShowDialog(false);
     } catch (e) {
-      console.log(e);
       setFormStatus({ status: "error", message: e });
     }
     setSubmitting(false);
@@ -70,10 +72,7 @@ export function BillingDetailsForm() {
   const open = () => setShowDialog(true);
   const close = () => setShowDialog(false);
   return (
-    <Container>
-      <pre>
-        {JSON.stringify({ values: values, errors, formStatus }, null, 2)}
-      </pre>
+    <div className="form-container">
       <Button onClick={open}>Ввести данные</Button>
       <Dialog
         isOpen={showDialog}
@@ -181,6 +180,6 @@ export function BillingDetailsForm() {
           <Button type="submit">Go to checkout</Button>
         </Form>
       </Dialog>
-    </Container>
+    </div>
   );
 }
